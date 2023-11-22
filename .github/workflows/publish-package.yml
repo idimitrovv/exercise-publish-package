@@ -29,9 +29,5 @@ jobs:
         dotnet pack --configuration Release --output nupkg
 
     - name: Publish to NuGet
-      uses: softprops/action-gh-release@v1
-      with:
-        files: sample-packages/dotnet/GitHubTest/nupkg/*.nupkg
-        token: ${{ secrets.NUGET_PACKAGE_TOKEN }}
-        name: Release ${{ github.sha }}
-        tag_name: ${{ github.sha }}
+      run: |
+        dotnet nuget push sample-packages/dotnet/GitHubTest/nupkg/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "github"

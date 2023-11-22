@@ -20,6 +20,7 @@ jobs:
 
     - name: Build and publish
       run: |
+        cd sample-packages/dotnet/GitHubTest
         dotnet restore
         dotnet build --configuration Release
         dotnet pack --configuration Release --output nupkg

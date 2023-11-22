@@ -30,4 +30,4 @@ jobs:
 
     - name: Publish to NuGet
       run: |
-        dotnet nuget push sample-packages/dotnet/GitHubTest/nupkg/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "https://npm.pkg.github.com/"
+        dotnet nuget push sample-packages/dotnet/GitHubTest/nupkg/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "https://nuget.pkg.github.com/idimitrovv/index.json"

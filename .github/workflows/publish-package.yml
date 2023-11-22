@@ -33,5 +33,5 @@ jobs:
       with:
         files: sample-packages/dotnet/GitHubTest/nupkg/*.nupkg
         token: ${{ secrets.GITHUB_TOKEN }}
-        release_name: Release ${{ github.sha }}
+        name: Release ${{ github.sha }}
         tag_name: ${{ github.sha }}

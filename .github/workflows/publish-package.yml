@@ -28,7 +28,7 @@ jobs:
     - name: Publish to NuGet
       uses: softprops/action-gh-release@v1
       with:
-        files: ./nupkg/*.nupkg
+        files: sample-packages/dotnet/GitHubTest/nupkg/*.nupkg
         token: ${{ secrets.GITHUB_TOKEN }}
         release_name: Release ${{ github.sha }}
         tag_name: ${{ github.sha }}

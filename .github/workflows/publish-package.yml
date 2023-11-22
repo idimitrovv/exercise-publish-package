@@ -1,4 +1,4 @@
-name: Node.js Package
+name: dotnet Package
 
 on:
   workflow_dispatch:
@@ -10,18 +10,24 @@ jobs:
   publish-gpr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Build and test
-        run: npm --prefix=./sample-packages/npm/ run build
-        
-      - run: npm publish ./sample-packages/npm/
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'  # Adjust to the version you are using
+
+    - name: Build and publish
+      run: |
+        dotnet restore
+        dotnet build --configuration Release
+        dotnet pack --configuration Release --output nupkg
+
+    - name: Publish to NuGet
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./nupkg/*.nupkg
+        token: ${{ secrets.GITHUB_TOKEN }}
+        release_name: Release ${{ github.sha }}
+        tag_name: ${{ github.sha }}

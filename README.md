@@ -59,5 +59,5 @@ Resources for working with exercises and GitHub Actions in general:
 
 simple change
 
-Ivaylo Dimitrov
+Ivaylo Dimitrov2
 idi2@milestone.dk
